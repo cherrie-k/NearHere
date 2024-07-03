@@ -1,4 +1,4 @@
-package com.example.herenow
+package com.example.nearhere
 
 import io.flutter.embedding.android.FlutterActivity
 

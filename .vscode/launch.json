@@ -5,18 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "herenow",
+      "name": "nearhere",
       "request": "launch",
       "type": "dart"
     },
     {
-      "name": "herenow (profile mode)",
+      "name": "nearhere (profile mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile"
     },
     {
-      "name": "herenow (release mode)",
+      "name": "nearhere (release mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"
