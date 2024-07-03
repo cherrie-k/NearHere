@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nearhere/shared/widgets/custom_nav_bar.dart';
 
 class PostPage extends StatelessWidget {
   const PostPage({super.key});
@@ -7,15 +8,9 @@ class PostPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Post'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            context.pop();
-          },
-        ),
-      ),
+      // bottomNavigationBar: const CustomNavBar(
+      //   selectedIdx: 1,
+      // ),
       body: Center(
         child: Text('Post'),
       ),

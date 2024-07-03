@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nearhere/shared/widgets/custom_nav_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -7,23 +8,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // bottomNavigationBar: const CustomNavBar(
+      //   selectedIdx: 0,
+      // ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('Home'),
-            ElevatedButton(
-              onPressed: () {
-                context.push('/board');
-              },
-              child: Text('Go to Board'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                context.push('/post');
-              },
-              child: Text('Go to Post'),
-            ),
           ],
         ),
       ),
