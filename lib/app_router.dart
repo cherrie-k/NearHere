@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nearhere/features/board/views/board_page.dart';
+import 'package:nearhere/features/board/views/post_page.dart';
 import 'package:nearhere/features/home/views/home_page.dart';
 import 'package:nearhere/features/write/views/write_page.dart';
 import 'package:nearhere/shared/widgets/custom_nav_bar.dart';
@@ -28,7 +29,11 @@ class AppRouter {
           ),
           GoRoute(
             path: '/post',
-            builder: (context, state) => const PostPage(),
+            builder: (context, state) => PostPage(),
+          ),
+          GoRoute(
+            path: '/write',
+            builder: (context, state) => const WritePage(),
           ),
         ],
       ),
@@ -39,9 +44,10 @@ class AppRouter {
     switch (location) {
       case '/':
         return 0;
-      case '/post':
+      case '/write':
         return 1;
       case '/board':
+      case '/post':
         return 2;
       default:
         return 0;

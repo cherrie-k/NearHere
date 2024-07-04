@@ -12,7 +12,7 @@ class CustomNavBar extends StatelessWidget {
         context.go('/');
         break;
       case 1:
-        context.go('/post');
+        context.go('/write');
         break;
       case 2:
         context.go('/board');

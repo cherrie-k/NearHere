@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class PostItem extends StatelessWidget {
   final int idx;
@@ -10,7 +11,7 @@ class PostItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        
+        context.push('/post');
       },
       child: Container(
         padding: const EdgeInsets.all(9),
