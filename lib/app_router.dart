@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nearhere/features/board/views/board_page.dart';
 import 'package:nearhere/features/home/views/home_page.dart';
-import 'package:nearhere/features/post/views/post_page.dart';
+import 'package:nearhere/features/write/views/write_page.dart';
 import 'package:nearhere/shared/widgets/custom_nav_bar.dart';
 
 class AppRouter {
