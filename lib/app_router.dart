@@ -24,7 +24,7 @@ class AppRouter {
           ),
           GoRoute(
             path: '/board',
-            builder: (context, state) => const BoardPage(),
+            builder: (context, state) => BoardPage(),
           ),
           GoRoute(
             path: '/post',
