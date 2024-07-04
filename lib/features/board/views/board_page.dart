@@ -9,13 +9,13 @@ class BoardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: '게시판', hasLeading: false),
+      appBar: const CustomAppBar(title: '게시판', hasLeading: false),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
         child: Column(
           children: [
             boardTopArea(),
-            const SizedBox(height: 14),
+            const SizedBox(height: 18),
             PostGridArea(),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nearhere/features/board/widgets/post_item.dart';
 
 class PostGridArea extends StatelessWidget {
   PostGridArea({super.key});
@@ -14,13 +15,11 @@ class PostGridArea extends StatelessWidget {
           crossAxisCount: 2,
           mainAxisSpacing: 14,
           crossAxisSpacing: 14,
-          childAspectRatio: 188 / 211,
+          childAspectRatio: 6 / 7,
         ),
         itemCount: _tempItems.length,
-        itemBuilder: (context, idx) => Container(
-          alignment: Alignment.center,
-          color: Colors.amber,
-          child: Text('Post ${idx + 1}'),
+        itemBuilder: (context, idx) => PostItem(
+          idx: idx,
         ),
       ),
     );
