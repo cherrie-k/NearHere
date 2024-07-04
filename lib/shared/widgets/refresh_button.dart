@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class RefreshButton extends StatelessWidget {
-  const RefreshButton({super.key});
+  final double? size;
+
+  const RefreshButton({super.key, this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +13,8 @@ class RefreshButton extends StatelessWidget {
         debugPrint('REFRESH button pressed');
       },
       child: Container(
-        width: 36,
-        height: 36,
+        width: size ?? 36,
+        height: size ?? 36,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
