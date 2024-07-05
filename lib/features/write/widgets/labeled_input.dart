@@ -14,7 +14,13 @@ class LabeledInput extends StatelessWidget {
         Row(
           children: [
             const SizedBox(width: 4),
-            Text(label, style: const TextStyle(fontSize: 18,),),
+            Text(
+              label,
+              style: const TextStyle(
+                fontSize: 16,
+                color: Color(0xFF595959)
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 6),

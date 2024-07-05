@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:nearhere/features/write/widgets/custom_text_field.dart';
 import 'package:nearhere/features/write/widgets/labeled_input.dart';
+import 'package:nearhere/features/write/widgets/button_field.dart';
 import 'package:nearhere/shared/widgets/gradient_container.dart';
 import 'package:nearhere/shared/widgets/custom_app_bar.dart';
 
@@ -42,11 +43,32 @@ class WritePage extends StatelessWidget {
                   ),
                 ),
                 LabeledInput(
+                  label: '위치',
+                  widget: ButtonField(
+                    text: '서울시 강남구 논현동',
+                    buttonIcon: Icons.sync,
+                    onTap: () {
+                      debugPrint('위치 누름');
+                    },
+                  ),
+                ),
+                LabeledInput(
+                  label: '카테고리',
+                  widget: ButtonField(
+                    text: '선택',
+                    buttonIcon: Icons.unfold_more,
+                    onTap: () {
+                      debugPrint('카테로기 누름');
+                    },
+                  ),
+                ),
+                LabeledInput(
                   label: '내용',
                   widget: CustomTextField(
                     isOneLine: false,
                   ),
                 ),
+                const SizedBox(height: 24),
               ],
             ),
           ),

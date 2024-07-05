@@ -28,7 +28,7 @@ class RefreshButton extends StatelessWidget {
           ],
         ),
         child: const Icon(
-          Icons.refresh,
+          Icons.sync,
           color: Colors.grey,
         ),
       ),
