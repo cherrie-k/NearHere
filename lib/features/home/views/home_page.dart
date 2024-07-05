@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nearhere/features/home/widgets/gradient_container.dart';
+import 'package:nearhere/shared/widgets/gradient_container.dart';
 import 'package:nearhere/shared/widgets/custom_nav_bar.dart';
 
 class HomePage extends StatelessWidget {
