@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool? hasLeading;
+  final Widget? trailingAction;
 
   const CustomAppBar({
     super.key,
     required this.title,
     this.hasLeading = true,
+    this.trailingAction,
   });
 
   @override
@@ -41,15 +43,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           textAlign: TextAlign.center,
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              debugPrint('MORE button pressed');
-            },
-            icon: const Icon(
-              Icons.more_vert,
-              size: 24,
-            ),
-          ),
+          (trailingAction == null)
+              ? IconButton(
+                  onPressed: () {
+                    debugPrint('MORE button pressed');
+                  },
+                  icon: const Icon(
+                    Icons.more_vert,
+                    size: 24,
+                  ),
+                )
+              : trailingAction!,
           const SizedBox(
             width: 6,
           ),

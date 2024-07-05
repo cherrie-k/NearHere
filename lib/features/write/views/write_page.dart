@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+import 'package:nearhere/features/write/widgets/wrilte_save_button.dart';
 import 'package:nearhere/features/write/widgets/write_custom_text_field.dart';
 import 'package:nearhere/features/write/widgets/write_labeled_input.dart';
 import 'package:nearhere/features/write/widgets/write_button_field.dart';
@@ -13,7 +14,11 @@ class WritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return KeyboardDismisser(
       child: Scaffold(
-        appBar: const CustomAppBar(title: '글쓰기', hasLeading: false),
+        appBar: const CustomAppBar(
+          title: '글쓰기',
+          hasLeading: false,
+          trailingAction: WrilteSaveButton(),
+        ),
         backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.all(16),
