@@ -4,41 +4,45 @@ import 'package:nearhere/features/board/views/board_page.dart';
 import 'package:nearhere/features/board/views/post_page.dart';
 import 'package:nearhere/features/home/views/home_page.dart';
 import 'package:nearhere/features/write/views/write_page.dart';
+import 'package:nearhere/shared/models/location.dart';
 import 'package:nearhere/shared/widgets/custom_nav_bar.dart';
 
+
 class AppRouter {
-  final GoRouter router = GoRouter(
-    routes: [
-      ShellRoute(
-        builder: (context, state, child) {
-          return Scaffold(
-            body: child,
-            bottomNavigationBar: CustomNavBar(
-              selectedIdx: calculateSelectedIdx(state.uri.path),
+  GoRouter router(String locationAddress) {
+    return GoRouter(
+      routes: [
+        ShellRoute(
+          builder: (context, state, child) {
+            return Scaffold(
+              body: child,
+              bottomNavigationBar: CustomNavBar(
+                selectedIdx: calculateSelectedIdx(state.uri.path),
+              ),
+            );
+          },
+          routes: [
+            GoRoute(
+              path: '/',
+              builder: (context, state) => HomePage(location: locationAddress), // Pass the location address
             ),
-          );
-        },
-        routes: [
-          GoRoute(
-            path: '/',
-            builder: (context, state) => const HomePage(),
-          ),
-          GoRoute(
-            path: '/board',
-            builder: (context, state) => BoardPage(),
-          ),
-          GoRoute(
-            path: '/post',
-            builder: (context, state) => PostPage(),
-          ),
-          GoRoute(
-            path: '/write',
-            builder: (context, state) => const WritePage(),
-          ),
-        ],
-      ),
-    ],
-  );
+            GoRoute(
+              path: '/board',
+              builder: (context, state) => BoardPage(),
+            ),
+            GoRoute(
+              path: '/post',
+              builder: (context, state) => PostPage(),
+            ),
+            GoRoute(
+              path: '/write',
+              builder: (context, state) => const WritePage(),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
 
   static int calculateSelectedIdx(String location) {
     switch (location) {

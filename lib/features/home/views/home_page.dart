@@ -4,14 +4,13 @@ import 'package:nearhere/shared/widgets/gradient_container.dart';
 import 'package:nearhere/shared/widgets/custom_nav_bar.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final String location;
+
+  const HomePage({super.key, required this.location});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: const CustomNavBar(
-      //   selectedIdx: 0,
-      // ),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -29,7 +28,7 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('"'),
-                      Text('서울시 강남구 논현동'),
+                      Text(location),
                       Text('"'),
                     ],
                   ),
