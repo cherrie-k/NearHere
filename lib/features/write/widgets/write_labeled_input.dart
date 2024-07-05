@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class LabeledInput extends StatelessWidget {
+class WriteLabeledInput extends StatelessWidget {
   final String label;
   final Widget widget;
 
-  const LabeledInput({super.key, required this.label, required this.widget});
+  const WriteLabeledInput({super.key, required this.label, required this.widget});
 
   @override
   Widget build(BuildContext context) {

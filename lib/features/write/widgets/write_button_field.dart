@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ButtonField extends StatelessWidget {
+class WriteButtonField extends StatelessWidget {
   final IconData buttonIcon;
   final VoidCallback onTap;
   final String text;
   final Color? color;
 
-  const ButtonField({
+  const WriteButtonField({
     super.key,
     required this.buttonIcon,
     required this.onTap,

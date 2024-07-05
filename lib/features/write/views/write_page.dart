@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
-import 'package:nearhere/features/write/widgets/custom_text_field.dart';
-import 'package:nearhere/features/write/widgets/labeled_input.dart';
-import 'package:nearhere/features/write/widgets/button_field.dart';
+import 'package:nearhere/features/write/widgets/write_custom_text_field.dart';
+import 'package:nearhere/features/write/widgets/write_labeled_input.dart';
+import 'package:nearhere/features/write/widgets/write_button_field.dart';
 import 'package:nearhere/shared/widgets/gradient_container.dart';
 import 'package:nearhere/shared/widgets/custom_app_bar.dart';
 
@@ -36,15 +36,15 @@ class WritePage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 24),
-                LabeledInput(
+                WriteLabeledInput(
                   label: '제목',
-                  widget: CustomTextField(
+                  widget: CustomTextField.WriteCustomTextField(
                     isOneLine: true,
                   ),
                 ),
-                LabeledInput(
+                WriteLabeledInput(
                   label: '위치',
-                  widget: ButtonField(
+                  widget: WriteButtonField(
                     text: '서울시 강남구 논현동',
                     buttonIcon: Icons.sync,
                     onTap: () {
@@ -52,9 +52,9 @@ class WritePage extends StatelessWidget {
                     },
                   ),
                 ),
-                LabeledInput(
+                WriteLabeledInput(
                   label: '카테고리',
-                  widget: ButtonField(
+                  widget: WriteButtonField(
                     text: '선택',
                     buttonIcon: Icons.unfold_more,
                     onTap: () {
@@ -62,9 +62,9 @@ class WritePage extends StatelessWidget {
                     },
                   ),
                 ),
-                LabeledInput(
+                WriteLabeledInput(
                   label: '내용',
-                  widget: CustomTextField(
+                  widget: CustomTextField.WriteCustomTextField(
                     isOneLine: false,
                   ),
                 ),

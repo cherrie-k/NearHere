@@ -4,7 +4,7 @@ import 'package:nearhere/shared/styles/border_styles.dart';
 class CustomTextField extends StatelessWidget {
   final bool isOneLine;
 
-  const CustomTextField({super.key, required this.isOneLine});
+  const CustomTextField.WriteCustomTextField({super.key, required this.isOneLine});
 
   @override
   Widget build(BuildContext context) {
