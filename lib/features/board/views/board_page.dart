@@ -9,6 +9,7 @@ class BoardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: const CustomAppBar(title: '게시판', hasLeading: false),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
@@ -33,6 +34,7 @@ class BoardPage extends StatelessWidget {
           '서울시 강남구 논현동',
           style: TextStyle(
             fontSize: 20,
+            color: Color(0xFF595959),
           ),
         ),
       ],

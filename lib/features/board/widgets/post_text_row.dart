@@ -21,7 +21,7 @@ class PostTextRow extends StatelessWidget {
     if (categoryKey != null) {
       final category = getCategory(categoryKey!);
       prefixIcon = SvgPicture.asset(
-        category!.iconPathColored,
+        category.iconPathColored,
         width: 20,
         height: 20,
       );

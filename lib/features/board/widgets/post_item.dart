@@ -1,43 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nearhere/shared/models/category.dart';
 
 class PostItem extends StatelessWidget {
-  final int idx;
+  final CategoryKey categoryKey;
+  final String title;
+  final String imgUrl;
 
   // TODO:: 게시글 사진 없는 경우 처리
-  const PostItem({super.key, required this.idx});
+  const PostItem({
+    super.key,
+    required this.categoryKey,
+    required this.title,
+    required this.imgUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final Category category = getCategory(categoryKey);
+
     return InkWell(
-      onTap: (){
+      onTap: () {
         context.push('/post');
       },
       child: Container(
-        padding: const EdgeInsets.all(9),
+        padding: const EdgeInsets.fromLTRB(8, 8, 8, 10),
         decoration: BoxDecoration(
-          color: Colors.amber[200],
+          color: category.color,
           borderRadius: BorderRadius.circular(5),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Icon(Icons.favorite_border, size: 20),
+                const SizedBox(width: 2),
+                SvgPicture.asset(
+                  category.iconPath,
+                  width: 24,
+                  height: 24,
+                ),
                 const SizedBox(width: 6),
                 Expanded(
                   child: Text(
-                    'Post ${idx + 1}',
+                    title,
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Color(0xFF343434),
+                    ),
                   ),
                 ),
               ],
             ),
             const Spacer(),
-            Image.network('https://picsum.photos/20${idx}', width: 170, height: 170),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: Image.network(
+                imgUrl,
+                width: 170,
+                height: 170,
+                fit: BoxFit.cover,
+              ),
+            ),
           ],
         ),
       ),

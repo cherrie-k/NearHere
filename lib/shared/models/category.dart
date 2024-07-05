@@ -55,6 +55,6 @@ const Map<CategoryKey, Category> categories = {
   ),
 };
 
-Category? getCategory(CategoryKey key) {
-  return categories[key];
+Category getCategory(CategoryKey key) {
+  return categories[key] ?? categories[CategoryKey.ETC]!;
 }

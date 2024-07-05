@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nearhere/features/board/widgets/post_item.dart';
+import 'package:nearhere/shared/models/category.dart';
 
 class PostGridArea extends StatelessWidget {
   PostGridArea({super.key});
@@ -15,11 +16,13 @@ class PostGridArea extends StatelessWidget {
           crossAxisCount: 2,
           mainAxisSpacing: 14,
           crossAxisSpacing: 14,
-          childAspectRatio: 6 / 7,
+          childAspectRatio: 6.1 / 7,
         ),
         itemCount: _tempItems.length,
         itemBuilder: (context, idx) => PostItem(
-          idx: idx,
+          title:'Post ${idx + 1}',
+          categoryKey: CategoryKey.FOOD,
+          imgUrl: 'https://picsum.photos/20${idx}',
         ),
       ),
     );
