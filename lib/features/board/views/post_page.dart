@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nearhere/features/board/widgets/post_text_row.dart';
+import 'package:nearhere/shared/models/category.dart';
 import 'package:nearhere/shared/widgets/custom_app_bar.dart';
 
 class PostPage extends StatelessWidget {
@@ -20,7 +22,7 @@ class PostPage extends StatelessWidget {
       ),
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical:14),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -49,55 +51,12 @@ class PostPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 6),
-              Row(
-                children: [
-                  Container(
-                    width: 34,
-                    height: 34,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: Colors.pink[200],
-                    ),
-                    child: Icon(
-                      Icons.catching_pokemon,
-                      size: 23,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      "치즈고양이 '하루' 출몰",
-                      style: TextStyle(
-                        fontSize: 22,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
+              PostTextRow(
+                text: "치즈고양이 '하루' 출몰",
+                categoryKey: CategoryKey.CUTE,
               ),
               const SizedBox(height: 8),
-              Row(
-                children: [
-                  Container(
-                    width: 34,
-                    height: 34,
-                    child: Icon(
-                      Icons.location_on_outlined,
-                      size: 23,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      "서울 강남구 봉은사로47길 40",
-                      style: TextStyle(
-                        fontSize: 22,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
+              PostTextRow(text: '서울 강남구 봉은사로47길 40'),
               const SizedBox(height: 16),
               Divider(
                 color: Color(0xFFC0C0C0),
