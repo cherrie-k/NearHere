@@ -3,8 +3,10 @@ import 'package:nearhere/shared/widgets/refresh_button.dart';
 
 class GradientContainer extends StatelessWidget {
   final Widget child;
+  final bool? showRefreshBtn;
 
-  const GradientContainer({super.key, required this.child});
+  const GradientContainer(
+      {super.key, required this.child, this.showRefreshBtn = true});
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +25,10 @@ class GradientContainer extends StatelessWidget {
       child: Stack(
         children: [
           child,
-          const Positioned(
+          Positioned(
             bottom: 16,
             right: 16,
-            child: RefreshButton(),
+            child: showRefreshBtn! ? RefreshButton() : SizedBox.shrink(),
           ),
         ],
       ),
