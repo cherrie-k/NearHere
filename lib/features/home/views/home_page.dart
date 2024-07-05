@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nearhere/shared/widgets/gradient_container.dart';
 import 'package:nearhere/shared/widgets/custom_nav_bar.dart';
@@ -37,12 +38,25 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Container(
-                width: double.infinity,
-                color: Colors.green,
-                height: 200,
-                child: Center(child: Text('지도')),
+              child: NaverMap(
+                // options: NaverMapViewOptions(
+                //   initialCameraPosition: NCameraPosition(
+                //     target: NLatLng(),
+                //     zoom: 10,
+                //     bearing: 0,
+                //     tilt: 0,
+                //   )
+                // ),
+                onMapReady: (controller){
+                  debugPrint('네이버 맵 로딩 완료');
+                },
               ),
+              // child: Container(
+              //   width: double.infinity,
+              //   color: Colors.green,
+              //   height: 200,
+              //   child: Center(child: Text('지도')),
+              // ),
             ),
           ],
         ),
