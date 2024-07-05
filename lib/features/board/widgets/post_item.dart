@@ -6,15 +6,15 @@ import 'package:nearhere/shared/models/category.dart';
 class PostItem extends StatelessWidget {
   final CategoryKey categoryKey;
   final String title;
-  final String imgUrl;
+  final String? imgUrl;
+  final String contents;
 
-  // TODO:: 게시글 사진 없는 경우 처리
-  const PostItem({
-    super.key,
-    required this.categoryKey,
-    required this.title,
-    required this.imgUrl,
-  });
+  const PostItem(
+      {super.key,
+      required this.categoryKey,
+      required this.title,
+      this.imgUrl,
+      required this.contents});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,10 @@ class PostItem extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: (imgUrl == null)
+              ? MainAxisAlignment.start
+              : MainAxisAlignment.start,
+              // TODO: 추후 수정
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -57,15 +60,28 @@ class PostItem extends StatelessWidget {
                 ),
               ],
             ),
-            const Spacer(),
+            const SizedBox(height: 6),
             ClipRRect(
               borderRadius: BorderRadius.circular(4),
-              child: Image.network(
-                imgUrl,
-                width: 170,
-                height: 170,
-                fit: BoxFit.cover,
-              ),
+              child: (imgUrl == null)
+                  ? Text(
+                      contents,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Color(
+                          0xFF595959,
+                        ),
+                      ),
+                      softWrap: true,
+                      maxLines: 5,
+                      overflow: TextOverflow.ellipsis,
+                    )
+                  : Image.network(
+                      imgUrl!,
+                      width: 170,
+                      height: 170,
+                      fit: BoxFit.cover,
+                    ),
             ),
           ],
         ),
