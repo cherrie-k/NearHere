@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class WriteButtonField extends StatelessWidget {
+class WriteRefreshField extends StatelessWidget {
   final IconData buttonIcon;
   final VoidCallback onTap;
   final String text;
   final Color? color;
 
-  const WriteButtonField({
+  const WriteRefreshField({
     super.key,
     required this.buttonIcon,
     required this.onTap,

@@ -21,7 +21,7 @@ class PostGridArea extends StatelessWidget {
         itemCount: _tempItems.length,
         itemBuilder: (context, idx) => PostItem(
           title: 'Post ${idx + 1}',
-          categoryKey: CategoryKey.FOOD,
+          categoryKey: CategoryKey.CUTE,
           imgUrl: 'https://picsum.photos/20${idx}',
           contents: '선릉역 3출 앞에서 웬 젊은이들이 버스킹을 하고 있네요~! 지나가다 듣기 좋아 혼자 보기 아까운 마음에 올려봅니다선릉역 3출 앞에서 웬 젊은이들이 버스킹을 하고 있네요~! 지나가다 듣기 좋아 혼자 보기 아까운 마음에 올려봅니다선릉역 3출 앞에서 웬 젊은이들이 버스킹을 하고 있네요~! 지나가다 듣기 좋아 혼자 보기 아까운 마음에 올려봅니다선릉역 3출 앞에서 웬 젊은이들이 버스킹을 하고 있네요~! 지나가다 듣기 좋아 혼자 보기 아까운 마음에 올려봅니다 ㅎㅎ',
         ),
