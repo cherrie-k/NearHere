@@ -4,7 +4,6 @@ import 'package:nearhere/features/board/views/board_page.dart';
 import 'package:nearhere/features/board/views/post_page.dart';
 import 'package:nearhere/features/home/views/home_page.dart';
 import 'package:nearhere/features/write/views/write_page.dart';
-import 'package:nearhere/shared/models/location.dart';
 import 'package:nearhere/shared/widgets/custom_nav_bar.dart';
 
 
@@ -24,7 +23,7 @@ class AppRouter {
           routes: [
             GoRoute(
               path: '/',
-              builder: (context, state) => HomePage(location: locationAddress), // Pass the location address
+              builder: (context, state) => HomePage(), 
             ),
             GoRoute(
               path: '/board',
