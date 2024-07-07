@@ -1,4 +1,8 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/material.dart';
+
+part 'category.freezed.dart';
+part 'category.g.dart';
 
 enum CategoryKey {
   WARN,
@@ -8,18 +12,26 @@ enum CategoryKey {
   ETC,
 }
 
-class Category {
-  final String text;
-  final String iconPath;
-  final String iconPathColored;
-  final Color color;
+class ColorConverter implements JsonConverter<Color, int> {
+  const ColorConverter();
 
-  const Category({
-    required this.text,
-    required this.iconPath,
-    required this.iconPathColored,
-    required this.color,
-  });
+  @override
+  Color fromJson(int json) => Color(json);
+
+  @override
+  int toJson(Color color) => color.value;
+}
+
+@freezed
+class Category with _$Category {
+  const factory Category({
+    required String text,
+    required String iconPath,
+    required String iconPathColored,
+    @ColorConverter() required Color color,
+  }) = _Category;
+
+  factory Category.fromJson(Map<String, dynamic> json) => _$CategoryFromJson(json);
 }
 
 const Map<CategoryKey, Category> categories = {
