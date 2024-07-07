@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nearhere/features/write/viewmodels/write_viewmodel.dart';
 
-class WrilteSaveButton extends StatelessWidget {
-  const WrilteSaveButton({super.key});
+class WriteSaveButton extends StatelessWidget {
+  final WriteViewModel viewModel;
+
+  const WriteSaveButton({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {
-          debugPrint('저장저장ㅂㅓ튼누름');
+        onTap: () async {
+          await viewModel.createPost();
+          context.go('/board');
         },
         borderRadius: BorderRadius.circular(100),
         child: Container(

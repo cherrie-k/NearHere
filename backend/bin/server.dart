@@ -1,5 +1,4 @@
 import 'package:alfred/alfred.dart';
-import 'package:flutter/material.dart';
 
 class Post {
   String id;
@@ -89,5 +88,5 @@ void main() async {
   });
 
   await app.listen(3000);
-  debugPrint('Server running on port 3000');
+  print('Server running on port 3000');
 }

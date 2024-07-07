@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nearhere/shared/repositories/post_repository.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../shared/models/post.dart';
+import '../../../shared/repositories/post_repository.dart';
 
 class WriteViewModel extends StateNotifier<Post> {
   WriteViewModel(this._repository)
@@ -15,6 +16,7 @@ class WriteViewModel extends StateNotifier<Post> {
         ));
 
   final PostRepository _repository;
+  final ImagePicker _picker = ImagePicker();
 
   Future<void> createPost() async {
     await _repository.createPost(state);
@@ -32,12 +34,15 @@ class WriteViewModel extends StateNotifier<Post> {
     state = state.copyWith(category: category);
   }
 
-  void updateImage(String? image) {
-    state = state.copyWith(image: image);
-  }
-
   void updateContent(String content) {
     state = state.copyWith(content: content);
+  }
+
+  Future<void> pickImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      state = state.copyWith(image: image.path);
+    }
   }
 }
 

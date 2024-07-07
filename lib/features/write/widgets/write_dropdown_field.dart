@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nearhere/features/write/viewmodels/write_viewmodel.dart';
 import 'package:nearhere/shared/models/category.dart';
 
-class WriteDropdownField extends StatefulWidget {
-  const WriteDropdownField({super.key});
+class WriteDropdownField extends ConsumerStatefulWidget {
+  final WriteViewModel viewModel;
+
+  const WriteDropdownField({super.key, required this.viewModel});
 
   @override
-  State<WriteDropdownField> createState() => _WriteDropdownFieldState();
+  _WriteDropdownFieldState createState() => _WriteDropdownFieldState();
 }
 
-class _WriteDropdownFieldState extends State<WriteDropdownField> {
+class _WriteDropdownFieldState extends ConsumerState<WriteDropdownField> {
   CategoryKey? selectedCategory;
 
   @override
@@ -27,6 +31,8 @@ class _WriteDropdownFieldState extends State<WriteDropdownField> {
           width: 1,
         ),
         color: selectedCategoryData?.color ?? Colors.white,
+        // color: selectedCategory != null ? getCategory(selectedCategory).color : Colors.white
+        // color: selectedCategory != null ? getCategory(selectedCategory).color : Colors.white
       ),
       
       child: DropdownButtonHideUnderline(
@@ -70,6 +76,9 @@ class _WriteDropdownFieldState extends State<WriteDropdownField> {
           onChanged: (CategoryKey? newValue) {
             setState(() {
               selectedCategory = newValue;
+              if(newValue != null){
+                widget.viewModel.updateCategory(newValue.toString().split('.').last);
+              }
             });
           },
           dropdownColor: Colors.white,

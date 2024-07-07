@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nearhere/shared/models/post.dart';
 
 class PostRepository {
-  final Dio _dio = Dio(BaseOptions(baseUrl: 'http://localhost:3000'));
+  final Dio _dio = Dio(BaseOptions(baseUrl: dotenv.env['BASE_URL']!));
 
   Future<List<Post>> getPosts() async {
     final response = await _dio.get('/posts');
