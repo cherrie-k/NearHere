@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nearhere/shared/styles/border_styles.dart';
 
-class CustomTextField extends StatelessWidget {
+class WriteCustomTextField extends StatelessWidget {
   final bool isOneLine;
+  final ValueChanged<String> onChanged;
 
-  const CustomTextField.WriteCustomTextField({super.key, required this.isOneLine});
+  const WriteCustomTextField({super.key, required this.isOneLine, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,7 @@ class CustomTextField extends StatelessWidget {
           fontSize: 18,
           color: Color(0xFF343434),
         ),
+        onChanged: onChanged,
       ),
     );
   }

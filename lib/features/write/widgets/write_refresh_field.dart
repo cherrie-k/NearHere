@@ -26,17 +26,19 @@ class WriteRefreshField extends StatelessWidget {
           width: 1,
         ),
       ),
-      child: Row(
+      child: Row( 
         children: [
           const SizedBox(width: 12),
           Expanded(
             child: Text(
               text,
+              maxLines: 1,
               style: const TextStyle(
                 fontSize: 18,
                 color: Color(
                   0xFF343434,
                 ),
+                overflow: TextOverflow.ellipsis
               ),
             ),
           ),

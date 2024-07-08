@@ -2,40 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nearhere/shared/models/category.dart';
+import 'package:nearhere/shared/models/post.dart';
 
 class PostItem extends StatelessWidget {
-  final CategoryKey categoryKey;
-  final String title;
-  final String? imgUrl;
-  final String contents;
+  final Post post;
 
-  const PostItem(
-      {super.key,
-      required this.categoryKey,
-      required this.title,
-      this.imgUrl,
-      required this.contents});
+  const PostItem({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
-    final Category category = getCategory(categoryKey);
+    final category = getCategory(
+      CategoryKey.values
+          .firstWhere((e) => e.toString() == 'CategoryKey.${post.category}'),
+    );
 
     return InkWell(
       onTap: () {
-        context.push('/post');
+        context.push('/post/${post.id}');
       },
       child: Container(
-        padding: const EdgeInsets.fromLTRB(8, 8, 8, 10),
+        padding: (post.image == null)
+            ? EdgeInsets.fromLTRB(16, 8, 16, 10)
+            : EdgeInsets.fromLTRB(8, 8, 8, 10),
         decoration: BoxDecoration(
           color: category.color,
           borderRadius: BorderRadius.circular(5),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: (imgUrl == null)
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: (post.image == null)
               ? MainAxisAlignment.start
               : MainAxisAlignment.start,
-              // TODO: 추후 수정
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -49,7 +46,7 @@ class PostItem extends StatelessWidget {
                 const SizedBox(width: 6),
                 Expanded(
                   child: Text(
-                    title,
+                    post.title,
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,
                     style: const TextStyle(
@@ -63,9 +60,9 @@ class PostItem extends StatelessWidget {
             const SizedBox(height: 6),
             ClipRRect(
               borderRadius: BorderRadius.circular(4),
-              child: (imgUrl == null)
+              child: (post.image == null)
                   ? Text(
-                      contents,
+                      post.content,
                       style: const TextStyle(
                         fontSize: 14,
                         color: Color(
@@ -77,9 +74,9 @@ class PostItem extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     )
                   : Image.network(
-                      imgUrl!,
-                      width: 170,
-                      height: 170,
+                      post.image!,
+                      width: double.infinity,
+                      height: 172,
                       fit: BoxFit.cover,
                     ),
             ),

@@ -71,3 +71,20 @@ class LocationService {
     );
   }
 }
+
+//     final region = jsonData["results"][0]["region"];
+//     final myJsonGu = region["area2"]["name"];
+//     final myJsonSi = region["area1"]["name"];
+//     // print('############# region: $region');
+//     // print('############# myJsonGu: $myJsonGu');
+//     // print('############# myJsonGu: $myJsonGu');
+
+//     final address = '$myJsonSi $myJsonGu';
+
+//     return Location(
+//       latitude: lat,
+//       longitude: lon,
+//       address: address,
+//     );
+//   }
+// }
