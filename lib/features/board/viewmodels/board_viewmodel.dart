@@ -2,26 +2,33 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nearhere/shared/models/post.dart';
 import 'package:nearhere/shared/repositories/post_repository.dart';
 
-class BoardViewModel extends StateNotifier<List<Post>> {
-  BoardViewModel(this._repository) : super([]) {
+class BoardViewModel extends StateNotifier<AsyncValue<List<Post>>> {
+  BoardViewModel(this._repository) : super(const AsyncValue.loading()) {
     fetchPosts();
   }
 
   final PostRepository _repository;
 
   Future<void> fetchPosts() async {
-    final response = await _repository.getPosts();
-    state = response;
+    try {
+      final posts = await _repository.getPosts();
+      state = AsyncValue.data(posts);
+    } catch (error, stackTrace) {
+      state = AsyncValue.error(error, stackTrace);
+    }
   }
 
   Future<void> deletePost(String id) async {
     await _repository.deletePost(id);
-    state = state.where((post) => post.id != id).toList();
+    state = state
+        .whenData((posts) => posts.where((post) => post.id != id).toList());
   }
 }
 
 final boardViewModelProvider =
-    StateNotifierProvider<BoardViewModel, List<Post>>((ref) {
-  final repository = ref.watch(postRepositoryProvider);
-  return BoardViewModel(repository);
-});
+    StateNotifierProvider<BoardViewModel, AsyncValue<List<Post>>>(
+  (ref) {
+    final repository = ref.watch(postRepositoryProvider);
+    return BoardViewModel(repository);
+  },
+);
