@@ -1,24 +1,31 @@
+import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../shared/models/post.dart';
-import '../../../shared/repositories/post_repository.dart';
+import 'package:nearhere/shared/models/post.dart';
+import 'package:nearhere/shared/repositories/post_repository.dart';
 
 class WriteViewModel extends StateNotifier<Post> {
   WriteViewModel(this._repository)
-      : super(Post(
-          id: '',
-          title: '',
-          address: '',
-          category: '',
-          image: null,
-          content: '',
-          createdAt: DateTime.now(),
-        ));
+      : super(
+          Post(
+            id: '',
+            title: '',
+            address: '',
+            category: '',
+            image: null,
+            content: '',
+            createdAt: DateTime.now(),
+          ),
+        );
 
   final PostRepository _repository;
   final ImagePicker _picker = ImagePicker();
 
   Future<void> createPost() async {
+    if (state.image != null) {
+      final imageUrl = await _repository.uploadImage(File(state.image!));
+      state = state.copyWith(image: imageUrl);
+    }
     await _repository.createPost(state);
   }
 
@@ -46,8 +53,9 @@ class WriteViewModel extends StateNotifier<Post> {
   }
 }
 
-final writeViewModelProvider =
-    StateNotifierProvider<WriteViewModel, Post>((ref) {
-  final repository = ref.watch(postRepositoryProvider);
-  return WriteViewModel(repository);
-});
+final writeViewModelProvider = StateNotifierProvider<WriteViewModel, Post>(
+  (ref) {
+    final repository = ref.watch(postRepositoryProvider);
+    return WriteViewModel(repository);
+  },
+);

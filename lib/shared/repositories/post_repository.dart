@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,6 +24,14 @@ class PostRepository {
 
   Future<void> deletePost(String id) async {
     await _dio.delete('/posts/$id');
+  }
+
+  Future<String> uploadImage(File imageFile) async {
+    final formData = FormData.fromMap({
+      'file': await MultipartFile.fromFile(imageFile.path),
+    });
+    final response = await _dio.post('/upload', data: formData);
+    return response.data['url'];
   }
 }
 
