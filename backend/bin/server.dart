@@ -56,7 +56,7 @@ void main() async {
     }
   });
 
-  // Root
+  // Root 엔드포인트
   app.get('/', (req, res) async {
     res.send('Server is running');
   });
@@ -68,11 +68,10 @@ void main() async {
     }
 
     final files = await imageDir.list().toList();
-    final host =
-        req.headers.host!.split(':').first; 
+    final host = req.headers.host!.split(':').first;
     final port = req.headers.host!.split(':').length > 1
         ? req.headers.host!.split(':').last
-        : '3000'; 
+        : '3000';
 
     final imageUrls = files.map((file) {
       final filename = path.basename(file.path);
@@ -155,6 +154,25 @@ void main() async {
   // 전체 게시글 불러옴
   app.get('/posts', (req, res) async {
     await res.json(posts.map((post) => post.toJson()).toList());
+  });
+
+// 특정 게시글 불러옴
+  app.get('/posts/:id', (req, res) async {
+    final id = req.params['id'];
+    Post? post;
+    for (var p in posts) {
+      if (p.id == id) {
+        post = p;
+        break;
+      }
+    }
+
+    if (post != null) {
+      await res.json(post.toJson());
+    } else {
+      res.statusCode = 404;
+      await res.json({'error': 'Post not found'});
+    }
   });
 
   // 글 수정

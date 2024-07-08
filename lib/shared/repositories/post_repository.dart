@@ -8,11 +8,14 @@ class PostRepository {
   final Dio _dio = Dio(BaseOptions(baseUrl: dotenv.env['BASE_URL']!));
 
   Future<List<Post>> getPosts() async {
+    print('Fetching posts from: ${_dio.options.baseUrl}/posts');
+
     final response = await _dio.get('/posts');
     return (response.data as List).map((post) => Post.fromJson(post)).toList();
   }
 
   Future<Post> getPost(String id) async {
+    print('Fetching post from: ${_dio.options.baseUrl}/posts/$id');
     final response = await _dio.get('/posts/$id');
     return Post.fromJson(response.data);
   }

@@ -6,7 +6,6 @@ import 'package:nearhere/features/home/views/home_page.dart';
 import 'package:nearhere/features/write/views/write_page.dart';
 import 'package:nearhere/shared/widgets/custom_nav_bar.dart';
 
-
 class AppRouter {
   GoRouter router(String locationAddress) {
     return GoRouter(
@@ -23,15 +22,18 @@ class AppRouter {
           routes: [
             GoRoute(
               path: '/',
-              builder: (context, state) => HomePage(), 
+              builder: (context, state) => HomePage(),
             ),
             GoRoute(
               path: '/board',
               builder: (context, state) => BoardPage(),
             ),
             GoRoute(
-              path: '/post',
-              builder: (context, state) => PostPage(),
+              path: '/post/:id',
+              builder: (context, state) {
+                final postId = state.pathParameters['id'];
+                return PostPage(id: postId!);
+              },
             ),
             GoRoute(
               path: '/write',
