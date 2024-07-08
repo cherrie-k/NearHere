@@ -9,6 +9,8 @@ class PostGridArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final reversedPosts = List<Post>.from(posts.reversed);
+
     return Expanded(
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -17,8 +19,8 @@ class PostGridArea extends StatelessWidget {
           crossAxisSpacing: 14,
           childAspectRatio: 6.1 / 7,
         ),
-        itemCount: posts.length,
-        itemBuilder: (context, idx) => PostItem(post: posts[idx]),
+        itemCount: reversedPosts.length,
+        itemBuilder: (context, idx) => PostItem(post: reversedPosts[idx]),
       ),
     );
   }

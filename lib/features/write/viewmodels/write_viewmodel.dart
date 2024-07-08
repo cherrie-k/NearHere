@@ -21,11 +21,12 @@ class WriteViewModel extends StateNotifier<Post> {
   final PostRepository _repository;
   final ImagePicker _picker = ImagePicker();
 
-  Future<void> createPost() async {
+  Future<void> createPost(String address) async {
     if (state.image != null) {
       final imageUrl = await _repository.uploadImage(File(state.image!));
       state = state.copyWith(image: imageUrl);
     }
+    state = state.copyWith(address: address);  // address는 직접 입력 받는게 아니라 따로 추가해줌
     await _repository.createPost(state);
   }
 
