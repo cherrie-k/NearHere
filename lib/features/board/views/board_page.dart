@@ -43,7 +43,7 @@ class BoardPage extends ConsumerWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        RefreshButton(),
+        const RefreshButton(),
         const SizedBox(width: 14),
         Text(
           location.adminAddress,

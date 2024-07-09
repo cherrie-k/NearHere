@@ -4,8 +4,7 @@ import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:nearhere/app_router.dart';
-import 'package:nearhere/features/home/views/home_page.dart';
-import 'package:nearhere/shared/viewmodels/location_viewmodel.dart';
+import 'package:nearhere/shared/providers/location_provider.dart';
 
 Future<void> main() async {
   await _initialize();
@@ -30,9 +29,10 @@ Future<void> _initialize() async {
   await Geolocator.requestPermission();
   final position = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.best);
-  print('&&&&&&&&&&&&&');
-  print('lat: ${position.latitude}');
-  print('lon: ${position.longitude}');
+      
+  debugPrint('&&&&&&&&&&&&&');
+  debugPrint('lat: ${position.latitude}');
+  debugPrint('lon: ${position.longitude}');
 }
 
 class MyApp extends ConsumerWidget {
@@ -47,21 +47,25 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
       title: 'NEARHERE',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
       home: locationAsyncValue.when(
         data: (location) {
           return MaterialApp.router(
             title: 'NEARHERE',
-            routerConfig: _appRouter.router(
-                location.adminAddress), // Pass location address to the router
+            routerConfig: _appRouter.router(location.adminAddress),
             debugShowCheckedModeBanner: false,
-            // theme: ThemeData(),
+            theme: ThemeData(
+              fontFamily: 'Pretendard',
+              scaffoldBackgroundColor: const Color(0xFFFFFFFF),
+            ),
           );
         },
-        loading: () => Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, stack) => Center(
           child: Text('Error: $error'),
         ),
+      ),
+      theme: ThemeData(
+        fontFamily: 'Bangers',
       ),
     );
   }

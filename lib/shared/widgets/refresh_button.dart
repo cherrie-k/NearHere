@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nearhere/shared/viewmodels/location_viewmodel.dart';
 
-class RefreshButton extends StatelessWidget {
+class RefreshButton extends ConsumerWidget {
   final double? size;
 
   const RefreshButton({super.key, this.size});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       splashColor: Colors.transparent,
       onTap: () {
-        debugPrint('REFRESH button pressed');
+        ref.read(locationProvider.notifier).refreshLocation();
       },
       child: Container(
         width: size ?? 36,
