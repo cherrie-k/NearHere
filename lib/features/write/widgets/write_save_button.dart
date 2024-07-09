@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nearhere/features/board/viewmodels/board_viewmodel.dart';
 import 'package:nearhere/features/write/viewmodels/write_viewmodel.dart';
 import 'package:nearhere/shared/providers/location_provider.dart';
 
@@ -18,6 +19,7 @@ class WriteSaveButton extends ConsumerWidget {
         location.whenData((locationData) async {
           await viewModel.createPost(locationData.roadAddress);
         });
+        ref.invalidate(boardViewModelProvider);
         context.go('/board');
       },
       borderRadius: BorderRadius.circular(100),

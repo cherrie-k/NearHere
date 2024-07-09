@@ -4,7 +4,7 @@ import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:nearhere/app_router.dart';
-import 'package:nearhere/shared/viewmodels/location_viewmodel.dart';
+import 'package:nearhere/shared/providers/location_provider.dart';
 
 Future<void> main() async {
   await _initialize();
@@ -29,9 +29,10 @@ Future<void> _initialize() async {
   await Geolocator.requestPermission();
   final position = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.best);
-  print('&&&&&&&&&&&&&');
-  print('lat: ${position.latitude}');
-  print('lon: ${position.longitude}');
+      
+  debugPrint('&&&&&&&&&&&&&');
+  debugPrint('lat: ${position.latitude}');
+  debugPrint('lon: ${position.longitude}');
 }
 
 class MyApp extends ConsumerWidget {
