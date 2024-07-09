@@ -1,16 +1,14 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:nearhere/features/write/widgets/write_custom_text_field.dart';
 import 'package:nearhere/features/write/widgets/write_dropdown_field.dart';
+import 'package:nearhere/features/write/widgets/write_image_picker.dart';
 import 'package:nearhere/features/write/widgets/write_labeled_input.dart';
 import 'package:nearhere/features/write/widgets/write_refresh_field.dart';
 import 'package:nearhere/features/write/widgets/write_save_button.dart';
 import 'package:nearhere/shared/viewmodels/location_viewmodel.dart';
 import 'package:nearhere/shared/widgets/custom_app_bar.dart';
-import 'package:nearhere/shared/widgets/gradient_container.dart';
 import '../viewmodels/write_viewmodel.dart';
 
 class WritePage extends ConsumerWidget {
@@ -19,7 +17,6 @@ class WritePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(writeViewModelProvider.notifier);
-    final post = ref.watch(writeViewModelProvider);
     final location = ref.watch(locationProvider);
 
     return KeyboardDismisser(
@@ -35,32 +32,7 @@ class WritePage extends ConsumerWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                InkWell(
-                    onTap: () async {
-                      await viewModel.pickImage();
-                    },
-                    child: (post.image == null)
-                        ? GradientContainer(
-                            showRefreshBtn: false,
-                            borderRadius: BorderRadius.circular(8),
-                            borderStyle: Border.all(
-                                color: const Color(0xFFEDEDED), width: 2),
-                            child: const SizedBox(
-                              width: double.infinity,
-                              height: 240,
-                              child: Icon(
-                                Icons.add_photo_alternate_outlined,
-                                color: Colors.white,
-                                size: 72,
-                              ),
-                            ),
-                          )
-                        : Image.file(
-                            File(post.image!),
-                            width: double.infinity,
-                            height: 240,
-                            fit: BoxFit.contain,
-                          )),
+                const WriteImagePicker(),
                 const SizedBox(height: 24),
                 WriteLabeledInput(
                   label: '제목',
@@ -95,7 +67,7 @@ class WritePage extends ConsumerWidget {
                     onChanged: viewModel.updateContent,
                   ),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 18),
               ],
             ),
           ),

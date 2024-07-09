@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nearhere/features/board/widgets/post_text_row.dart';
 import 'package:nearhere/shared/models/category.dart';
+import 'package:nearhere/shared/utils/format_date_time.dart';
 import 'package:nearhere/shared/widgets/custom_app_bar.dart';
 import '../viewmodels/post_viewmodel.dart';
 
@@ -53,23 +54,21 @@ class PostPage extends ConsumerWidget {
                           ),
                         ),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      '${post.createdAt.year}.${post.createdAt.month}.${post.createdAt.day}',
+                      formatDateTime(post.createdAt),
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF929292),
+                      ),
                     ),
-                    const Text(
-                      ' | ',
-                    ),
-                    Text(
-                      '${post.createdAt.hour}:${post.createdAt.minute}',
-                    ),
-                    const SizedBox(width: 2),
+                    const SizedBox(width: 4),
                   ],
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 10),
                 PostTextRow(
                   text: post.title,
                   categoryKey: CategoryKey.values.firstWhere(
@@ -85,26 +84,30 @@ class PostPage extends ConsumerWidget {
                   thickness: 1,
                 ),
                 const SizedBox(height: 16),
-                Container(
-                  padding:const EdgeInsets.symmetric(horizontal: 8),
-                  width: double.infinity,
-                  child: Text(
-                    post.content,
-                    style: const TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
+                contentArea(post.content),
                 const SizedBox(height: 24),
               ],
             ),
           ),
         ),
-        loading: () => Center(
+        loading: () => const Center(
           child: CircularProgressIndicator(),
         ),
         error: (error, stack) => Center(
           child: Text('Error: $error'),
+        ),
+      ),
+    );
+  }
+
+  Widget contentArea(String content) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      width: double.infinity,
+      child: Text(
+        content,
+        style: const TextStyle(
+          fontSize: 20,
         ),
       ),
     );

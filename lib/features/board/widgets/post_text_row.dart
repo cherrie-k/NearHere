@@ -41,7 +41,7 @@ class PostTextRow extends StatelessWidget {
           child: Text(
             text,
             style: const TextStyle(
-              fontSize: 22,
+              fontSize: 20,
             ),
             overflow: TextOverflow.ellipsis,
           ),
