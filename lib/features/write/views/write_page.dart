@@ -77,6 +77,7 @@ class WritePage extends ConsumerWidget {
                       buttonIcon: Icons.sync,
                       onTap: () {
                         debugPrint('위치 누름');
+                        ref.read(locationProvider.notifier).refreshLocation();
                       },
                     ),
                   ),
