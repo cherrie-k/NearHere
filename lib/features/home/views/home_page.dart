@@ -30,25 +30,41 @@ class HomePage extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const SizedBox(height: 46),
-                          Text(
+                          const Text(
                             'NERE HERE!',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 34),
+                              fontFamily: 'Bangers',
+                              fontSize: 52,
+                            ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('"'),
+                              const Text(
+                                '"',
+                                style: TextStyle(
+                                  fontFamily: 'Bangers',
+                                  fontSize: 25,
+                                ),
+                              ),
                               Text(location.adminAddress),
-                              Text('"'),
+                              const Text(
+                                '"',
+                                style: TextStyle(
+                                  fontFamily: 'Bangers',
+                                  fontSize: 25,
+                                ),
+                              ),
                             ],
                           ),
                           const SizedBox(height: 46),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(
+                      height: 16,
+                    ),
                     Expanded(
                       child: NaverMap(
                         options: NaverMapViewOptions(
