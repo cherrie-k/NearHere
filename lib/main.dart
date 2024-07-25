@@ -15,7 +15,6 @@ Future<void> _initialize() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
     await dotenv.load(fileName: '.env');
-    debugPrint('Loaded .env file: ${dotenv.env}');
   } catch (e) {
     debugPrint("Could not load .env file: $e");
   }
@@ -30,9 +29,9 @@ Future<void> _initialize() async {
   final position = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.best);
       
-  debugPrint('&&&&&&&&&&&&&');
-  debugPrint('lat: ${position.latitude}');
-  debugPrint('lon: ${position.longitude}');
+  // debugPrint('&&&&&&&&&&&&&');
+  debugPrint('latitude: ${position.latitude}');
+  debugPrint('longitude: ${position.longitude}');
 }
 
 class MyApp extends ConsumerWidget {

@@ -3,7 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nearhere/features/board/viewmodels/board_viewmodel.dart';
 import 'package:nearhere/features/write/viewmodels/write_viewmodel.dart';
-import 'package:nearhere/shared/providers/location_provider.dart';
+import 'package:nearhere/shared/models/location.dart';
+import 'package:nearhere/shared/services/location_service.dart';
+
+final tempLocationProvider = FutureProvider<Location>((ref) async {
+  final locationService = LocationService();
+  return await locationService.getCurrentLocation();
+});
 
 class WriteSaveButton extends ConsumerWidget {
   final WriteViewModel viewModel;
@@ -12,15 +18,20 @@ class WriteSaveButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final location = ref.watch(locationProvider);
-
     return InkWell(
       onTap: () async {
-        location.whenData((locationData) async {
+        try {
+          final locationData = await ref.refresh(tempLocationProvider.future);
+
           await viewModel.createPost(locationData.roadAddress);
-        });
-        ref.invalidate(boardViewModelProvider);
-        context.go('/board');
+
+          ref.invalidate(boardViewModelProvider);
+          context.go('/board');
+        } catch (error) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Failed to fetch location: $error')),
+          );
+        }
       },
       borderRadius: BorderRadius.circular(100),
       child: Container(

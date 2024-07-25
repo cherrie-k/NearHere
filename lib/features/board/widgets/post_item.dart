@@ -22,8 +22,8 @@ class PostItem extends StatelessWidget {
       },
       child: Container(
         padding: (post.image == null)
-            ? EdgeInsets.fromLTRB(16, 8, 16, 10)
-            : EdgeInsets.fromLTRB(8, 8, 8, 10),
+            ? const EdgeInsets.fromLTRB(16, 8, 16, 10)
+            : const EdgeInsets.fromLTRB(8, 8, 8, 10),
         decoration: BoxDecoration(
           color: category.color,
           borderRadius: BorderRadius.circular(5),
