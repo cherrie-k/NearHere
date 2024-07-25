@@ -19,7 +19,7 @@ class LocationService {
     final response = await http.get(
       Uri.parse(
         // "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coordsToaddr&coords=${lon},${lat}&sourcecrs=epsg:4326&output=json",
-        "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords=${lon},${lat}&sourcecrs=epsg:4326&orders=legalcode,admcode,addr,roadaddr&output=json",
+        "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords=$lon,$lat&sourcecrs=epsg:4326&orders=legalcode,admcode,addr,roadaddr&output=json",
       ),
       headers: headers,
     );
@@ -29,7 +29,7 @@ class LocationService {
     }
 
     final jsonData = jsonDecode(response.body);
-    print('API Response: $jsonData');
+    // print('[[SUCESS]] Naver Map API Response: $jsonData');
 
     if (jsonData["results"] == null || jsonData["results"].isEmpty) {
       throw RangeError("No results found in the response");
@@ -48,6 +48,7 @@ class LocationService {
             ' ' +
             result["land"]["number1"];
         if (result["land"]["addition0"] != null) {
+          // ignore: prefer_interpolation_to_compose_strings
           roadAddress += ' ' + result["land"]["addition0"]["value"];
         }
       } else if (result["name"] == "addr") {

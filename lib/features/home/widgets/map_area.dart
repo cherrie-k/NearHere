@@ -19,7 +19,7 @@ class MapArea extends StatelessWidget {
         ),
       ),
       onMapReady: (controller) {
-        debugPrint('네이버 맵 로딩 완료');
+        debugPrint('[[SUCCESS]] 네이버 지도 로딩 \n');
       },
     );
   }
